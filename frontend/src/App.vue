@@ -22,12 +22,13 @@
           </v-list-item>
         </v-list>
       </v-menu>
-
+      <v-divider vertical />
       <v-btn text rounded color="white">
         <router-link to="/about">
           Sobre nós
         </router-link>
       </v-btn>
+      <v-divider vertical />
       <v-btn rounded color="orange">
         <router-link to="/contact">
           Contato
@@ -56,8 +57,12 @@ export default {
   data: () => ({
     items: [
       {
-        title: "Serviços",
-        src: "/services",
+        title: "Sobre nós",
+        src: "/about",
+      },
+      {
+        title: "Contato",
+        src: "/contact",
       },
     ],
   }),
@@ -66,7 +71,9 @@ export default {
 
 <style lang="scss" scoped>
 #app-bar {
-  background: rgba(0, 0, 0, 0);
+  button {
+    margin: 10px;
+  }
 }
 #img-logo {
   max-width: 150px;
