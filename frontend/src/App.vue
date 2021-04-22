@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-app-bar id="app-bar" fixed color="secondary" app>
-      <v-spacer />
       <router-link to="/"
         ><v-img id="img-logo" src="@/assets/totvs-logo.png" />
       </router-link>
@@ -15,14 +14,6 @@
           </v-btn>
         </template>
 
-        <v-list>
-          <v-list-item v-for="(item, index) in items" :key="index">
-            <router-link :to="item.src">
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </router-link>
-          </v-list-item>
-        </v-list>
-        <v-divider />
         <v-list>
           <v-list-item v-for="(item, index) in items" :key="index">
             <router-link :to="item.src">
@@ -64,10 +55,6 @@ export default {
   components: {},
   data: () => ({
     items: [
-      {
-        title: "Ficticio 1",
-        src: "/",
-      },
       {
         title: "Serviços",
         src: "/services",
