@@ -1,60 +1,91 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-app-bar id="app-bar" fixed color="secondary" app>
+      <v-spacer />
+      <router-link to="/"
+        ><v-img id="img-logo" src="@/assets/totvs-logo.png" />
+      </router-link>
+      <v-spacer />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-menu open-on-hover top offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text color="white" v-bind="attrs" v-on="on">
+            Categorias
+            <v-icon>mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
 
-      <v-spacer></v-spacer>
+        <v-list>
+          <v-list-item v-for="(item, index) in items" :key="index">
+            <router-link :to="item.src">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </router-link>
+          </v-list-item>
+        </v-list>
+        <v-divider />
+        <v-list>
+          <v-list-item v-for="(item, index) in items" :key="index">
+            <router-link :to="item.src">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </router-link>
+          </v-list-item>
+        </v-list>
+      </v-menu>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-btn text rounded color="white">
+        <router-link to="/about">
+          Sobre nós
+        </router-link>
+      </v-btn>
+      <v-btn rounded color="orange">
+        <router-link to="/contact">
+          Contato
+        </router-link>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <router-view />
     </v-main>
+
+    <v-footer color="secondary" padless>
+      <v-row justify="center" no-gutters>
+        <v-col class="secondary py-2 text-center white" cols="12">
+          {{ new Date().getFullYear() }} — <strong> TOTVS </strong>
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
+  name: "App",
+  components: {},
   data: () => ({
-    //
+    items: [
+      {
+        title: "Ficticio 1",
+        src: "/",
+      },
+      {
+        title: "Serviços",
+        src: "/services",
+      },
+    ],
   }),
 };
 </script>
+
+<style lang="scss" scoped>
+#app-bar {
+  background: rgba(0, 0, 0, 0);
+}
+#img-logo {
+  max-width: 150px;
+}
+a {
+  text-decoration: none;
+  color: white !important;
+}
+</style>
